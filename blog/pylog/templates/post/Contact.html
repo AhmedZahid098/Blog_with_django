@@ -1,0 +1,42 @@
+{% extend "blog.html" %}
+{% block content %}
+<head>
+    <link type="text/css" rel="stylesheet" href="reset.css">
+</head>
+<div>
+    <main>
+        <article class="contact">
+            <h1>Contact</h1>
+            <div>
+                <form action="">
+                    <p>
+                        Your Name (required)<br>
+                        <input type="text" name="Name"><br>
+                    </p>
+                    <p>
+                        Your Email (required)<br>
+                        <input type="text" name="Email"><br>
+                    </p>
+                    <p>
+                        Subject<br>
+                        <input type="text" name="Subject"><br>
+                    </p>
+                    <p>
+                        Your Message<br>
+                        <span>
+                            <textarea name="your_message" class="message" cols="40" rows="10"></textarea><br>
+                        </span>
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Send"><br>
+                    </p>
+
+                </form>
+            </div>
+        </article>
+        <aside class="subscription">
+
+        </aside>
+    </main>
+</div>
+{% endblock %}

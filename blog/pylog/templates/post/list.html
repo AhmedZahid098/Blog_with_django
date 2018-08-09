@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %} AhmedZJ {% endblock %}
+
+{% block content %}
+    <article class="wrapper_content_list">
+        {% for post in posts %}
+        <div class="card blue-grey darken-4 center-align hoverable">
+            {% if post.image %}
+            <div class="card-image">
+                <img class="responsive-img" src="{{ post.image.url }}" class="" alt="{{ post.title }}" height=auto; width=100%>
+            </div>
+            {% endif %}
+            <div class="card-content">
+                <a href="{{ post.get_absolute_url }}"><h2 class="">{{ post.title }}</h2></a>
+                <small>Published {{ post.publish }} by {{ post.author }}</small>
+            </div>
+            <div class="card-content">
+                <p>{{ post.body|markdown|truncatewords:20|linebreaks }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{{ post.get_absolute_url }}" class="btn waves-effect waves-light blue-grey darken-3 hoverable">Read more</a>
+            </div>
+
+            <P class="card-content">
+                <em>#</em>
+                {% for tag in post.tags.all %}
+                <a class="card-action" href="{% url "pylog:post_list_by_tag" tag.slug %} ">{{ tag.name }}</a>
+                {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </P>
+
+        </div>
+        {% endfor %}
+
+
+    </article>
+    <div class="center-align">
+        {% include "pagination.html" with page=posts %}
+    </div>
+    <div class="">
+        <div class="fb-comments" data-href="{% url 'pylog:post_list' %}" data-numposts="5"></div>
+    </div>
+
+    <aside class="sidebar center-align">
+        <div class="">
+            <div class="card blue-grey darken-4">
+                <p class="card-content">
+                    <span class="">I've written {% total_posts %} posts so far. I would love to have your response !</span>
+                    <div class="card-content">
+                        <a class="card-action" href="{% url "pylog:post_feed" %}">Subscribe to RSS feed</a>
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div class="">
+            <div class="card blue-grey darken-4">
+                <h3>Latest Posts</h3>
+                <div class="card-content">
+                    <p class="card-action">{% show_latest_posts 4 %}</p>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+{% endblock %}

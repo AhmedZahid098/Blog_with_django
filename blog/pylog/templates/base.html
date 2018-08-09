@@ -1,0 +1,95 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Ahmed Zahid">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{% static "/favicon.ico" %}"/>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700|Lato" rel="stylesheet">
+    <!-- Reset css -->
+    <link type="text/css" rel="stylesheet" href="{% static "/css/reset.css" %}">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstra css -->
+    <!-- <link type="text/css" rel="stylesheet" href="{% static "/css/bootstrap.min.css" %}"> -->
+    <!-- Materialize css-->
+    <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
+    <!-- Custom css -->
+    <link type="text/css" rel="stylesheet" href="{% static "/scss/styles.css" %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %} {{ post.title }} {% endblock %}</title>
+</head>
+
+    <header class="header_container" role="banner">
+        <div class="profile_pic">
+            <a href="{% url 'pylog:post_list' %}"><img class="circle" width=150px height=150px alt="Ahmed Zahid" src="{% static "images/Ahmed_Zahid_br.png" %}" onmouseover="this.src='{% static "images/Ahmed_Zahid_cr.png" %}'" onmouseout="this.src='{% static "images/Ahmed_Zahid_br.png" %}'" /></a>
+        </div>
+        <div class="title_wrapper">
+            <h1>{% block name %} Ahmed ZJ {% endblock %}</h1>
+            <p class="description">{% block description %} Development | Books | Poetry{% endblock %}</p>
+            <ul>
+                <li class="social_link_list">
+                    <a class="github_link" href="https://github.com/AhmedZahid098" target="_blank"> <i class="fa fa-github fa-2x" style=color:#fff> </i> </a>
+                </li>
+                <li class="social_link_list">
+                    <a class="linkedin_link" href="https://www.linkedin.com/in/ahmed-zahid-122946a6/" target="_blank"> <i class="fa fa-linkedin fa-2x" style=color:#0077B5> </i> </a>
+                </li>
+                <li class="social_link_list">
+                    <a class="googleplus_link" href="https://plus.google.com/+AhmedZahidZJ" target="_blank"> <i class="fa fa-google-plus fa-2x" style=color:#d34836> </i> </a>
+                </li>
+                <li class="social_link_list">
+                    <a class="twitter_link" href="https://twitter.com/AhmedZahid098" target="_blank"> <i class="fa fa-twitter fa-2x" style=color:#00aced> </i> </a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav_heading">
+            <ul>
+                <li class="nav_content">
+                    <a title="Blog" href="{% url 'pylog:post_list' %}">Lifelog</a>
+                </li>
+                <li class="nav_content">
+                    <a title="Portfolio" href="{% url 'pylog:portfolio' %}">Portfolio</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        <!-- Insert here the Portfolio, Contact and PyLog -->
+        {% endblock %}
+    </main>
+
+    <footer class="footer_wrapper grey darken-3">
+        <div class="footer_text">
+            <p> <em>
+                &copy;
+                2018·<a href="{% url 'pylog:post_list' %}">Ahmed ZJ</a>
+                All rights reserved
+            </em>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Materialize js -->
+    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- fb commnets -->
+    <!-- <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script> -->
+</body>
+</html

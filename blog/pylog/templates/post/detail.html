@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+    <article class="white-text">
+
+        <div id="card_transparency" class="card">
+            <div class="card-content">
+                <h1>{{ post.title }}</h1>
+                <small>Published {{ post.publish }} by {{ post.author }}</small>
+            </div>
+            {% if post.image %}
+            <div class="card-image">
+                <img src="{{ post.image.url }}" class="" alt="{{ post.title }}" height=auto width=100%>
+            </div>
+            {% endif %}
+            <div class="card-content">
+                <p class="">{{ post.body|markdown }}</p>
+            </div>
+            <p class="card-content"><a href="{% url "pylog:post_share" post.id %}">Share post</a></p>
+        </div>
+
+        <!-- <div class="total_comments">
+            {% with comments.count as total_comments %}
+                <p>{{ total_comments }} comment{{ total_comments|pluralize }}</p>
+            {% endwith %}
+        <br>
+            {% for comment in comments %}
+                {{ comment.body|linebreaks }}
+                <p class="info">Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}</p>
+                {% empty %}
+                <p>There are no comments yet.</p>
+            {% endfor %}
+        </div> -->
+        <!-- <div class="fb-comments" data-href="{{ post.get_absolute_url }}" data-numposts="5"></div> -->
+        <!-- <div>
+            {% if new_comment %}
+                <p>Your comment has been added.</p>
+            {% else %}
+                <p>Add a new comment</p>
+            <form action="." method="post">
+                {{ comment_form.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value="Add comment"></p>
+            </form>
+            {% endif %}
+        </div> -->
+
+    </article>
+
+    <aside class="sidebar center-align">
+
+        <div id="card_transparency" class="similar_posts card">
+            <h2>Similar posts</h2>
+            {% for post in similar_posts %}
+            <p><a href="{{ post.get_absolute_url }}"></a>{{ post.title }}</p>
+            {% empty %}
+            <p class="card-content">There are no similar posts yet.</p>
+            {% endfor %}
+            <div class="feed card-content">
+                <p>I've written {% total_posts %} posts so far.</p>
+                <p><a href="{% url "pylog:post_feed" %}">Subscribe to my RSS feed</a></p>
+            </div>
+        </div>
+
+
+        <div id="card_transparency" class="latest_posts card">
+            <h3>Latest Posts</h3>
+            <div class="card-content"><p>{% show_latest_posts 3 %}</p></div>
+        </div>
+
+        <!-- <div class="most_commented_post">
+            <h3>Most commented posts</h3>
+            {% get_most_commented_posts as most_commented_posts %}
+                {% for post in most_commented_posts %}
+                    <p><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></p>
+                {% endfor %}
+        </div> -->
+
+    </aside>
+
+{% endblock %}
